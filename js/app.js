@@ -43,21 +43,35 @@ var Player = function(){
     this.stepX = 0;
     this.stepY = 0;
 }
-
+/*Update Player's movement*/
 Player.prototype.update = function(){
-    this.x += this.stepX;
-    if (this.y >= 0) {
-      this.y += this.stepY;
-    }
-
+    this.x += this.check('x');//checks whether we are inside the boundary for x
+    this.y += this.check('y');//checks whether we are inside the boundary for y
     this.stepX = 0;
     this.stepY = 0;
 }
+/*Check whether movement in a particular direction possible*/
+Player.prototype.check =function(direction){
+    var ret=0;
+    switch (direction.toLowerCase()) {
+      case 'x':
+        var nextStep = this.x + this.stepX;
+        ret = (nextStep < 0 || nextStep >  ctx.canvas.width) ? 0 : this.stepX;
+        break;
+      case 'y':
+        nextStep = this.x + this.stepY;
+        ret = (nextStep < 0 || nextStep >  ctx.canvas.height) ? 0 : this.stepX;
+        break;
+      default:
 
+    }
+    return ret;
+}
+/*Render the player*/
 Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
-
+/*Takes the input for the player movement*/
 Player.prototype.handleInput = function(key){
     if (!key) {
       return;
@@ -88,7 +102,7 @@ Player.prototype.handleInput = function(key){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var player = new Player();
-var allEnemies=[new Enemy(), new Enemy(), new Enemy()];
+var allEnemies=[InitializeEnemy(),InitializeEnemy(),InitializeEnemy()];
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
@@ -104,15 +118,19 @@ document.addEventListener('keyup', function(e) {
 });
 
 /*Custom Functions for usage*/
+
+/*To generate random positions for enemy and other similar features*/
 function GenerateRandom(start,limit){
   return  Math.floor(Math.random() * limit) + start;
 }
 
+/*Initializing new enemy*/
 function InitializeEnemy(){
   var enemy = new Enemy();
   allEnemies.push(enemy);
 }
 
+/*Removing an enemy*/
 function RemoveEnemy(){
   var index;
   allEnemies.forEach(function(item, i){
