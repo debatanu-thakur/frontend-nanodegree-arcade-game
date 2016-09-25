@@ -1,6 +1,7 @@
 # HMTL5 Canvas Game
 ## Description
-This game is developed in HTML 5 Canvas.
+This game is developed in HTML 5 Canvas. This game has a `player`, i.e. you and `enemies`.
+The `player` has to start from one end of the screen and reach the other side. The `enemies` move from left to right and block the `player` from reaching the destination. You as a `player` have to avoid colliding the `enemy` and reach the top, which is the water and the destination of the game.
 ## Pre-requisites
 Please have the following softwares installed.
 - Goolge Chrome or any HTML 5 Canvas supporting browser. You can find the supported browser details [here](http://caniuse.com/#search=canvas);
@@ -25,8 +26,9 @@ $ live-server
 ```
 The default browser opens with `index.html` hosted at `port: 8080`.
 Now you can play the game.
-## Game Instruction
-
+## Game Instructions
+1. The player - ![player](//raw.githubusercontent.com/debatanu-thakur/frontend-nanodegree-arcade-game/master/images/char-boy.png).
+2. The enemy - ![enemy](//raw.githubusercontent.com/debatanu-thakur/frontend-nanodegree-arcade-game/master/images/enemy-bug.png).
 3. `Up`, `Down`, `Left` and `Right` button moves the player in the respective directions.
 4. The enemies move from `left` to `right`.
 5. You win by reaching to the top, to the water.
