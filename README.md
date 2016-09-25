@@ -1,6 +1,36 @@
-frontend-nanodegree-arcade-game
-===============================
+# HMTL5 Canvas Game
+## Description
+This game is developed in HTML 5 Canvas.
+## Pre-requisites
+Please have the following softwares installed.
+- Goolge Chrome or any HTML 5 Canvas supporting browser. You can find the supported browser details [here](http://caniuse.com/#search=canvas);
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Setup
+Please follow the below instructions to setup the environment.
+```sh
+$ git clone https://github.com/debatanu-thakur/frontend-nanodegree-arcade-game.git
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+```
+You can play the game by following either of the below instructions
+- Open the `index.html` in any of the HTML5 Canvas supported browser.
+
+**OR**
+- If you have node installed in your system.
+```sh
+$ npm install -g live-server
+....
+....
+$ cd frontend-nanodegree-arcade-game
+$ live-server
+```
+The default browser opens with `index.html` hosted at `port: 8080`.
+Now you can play the game.
+## Instructions
+1. The ![player](//github.com/debatanu-thakur/frontend-nanodegree-arcade-game/blob/master/images/char-boy.png).
+2. The ![enemy](//github.com/debatanu-thakur/frontend-nanodegree-arcade-game/blob/master/images/enemy-bug.png).
+3. `Up`, `Down`, `Left` and `Right` button moves the player in the respective directions.
+4. The enemies move from `left` to `right`.
+5. You win by reaching to the top, to the water.
+6. If you collide with the enemy the game resets and you begin again.
+## License
+The contents of this repo is subjected to [MIT License](https://github.com/debatanu-thakur/license-store/blob/master/mit_license.txt).
