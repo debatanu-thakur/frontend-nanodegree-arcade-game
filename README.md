@@ -33,5 +33,6 @@ Now you can play the game.
 4. The enemies move from `left` to `right`.
 5. You win by reaching to the top, to the water.
 6. If you collide with the enemy the game resets and you begin again.
+
 ## License
 The contents of this repo is subjected to [MIT License](https://github.com/debatanu-thakur/license-store/blob/master/mit_license.txt).
