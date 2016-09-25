@@ -1,14 +1,15 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function() {
     /*
     *   Randomizing the generation of the position of the enemy
     */
-    this.x = GenerateRandom(0, 200);
-    this.y = GenerateRandom(10, 240);
+    this.x = this.GenerateRandom(0, 200);
+    this.y = this.GenerateRandom(10, 240);
     /*  Step tells that how fast the enemy travels along
     *   x-axis
     */
-    this.step = GenerateRandom(150, 200);
+    this.step = this.GenerateRandom(150, 200);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
@@ -53,6 +54,10 @@ Enemy.prototype.position = function() {
     return {x: this.x, y: this.y};
 }
 
+/*To generate random positions for enemy and other similar features*/
+Enemy.prototype.GenerateRandom = function(start, limit) {
+    return Math.floor(Math.random() * limit) + start;
+}
 
 
 // Now write your own player class
@@ -208,7 +213,7 @@ function InitializeEnemy() {
 function RemoveEnemy() {
     var index;
     allEnemies.forEach(function(item, i) {
-        if (this.delete) {
+        if (item.delete) {
             index = i;
         }
     });
