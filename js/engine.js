@@ -29,6 +29,11 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    /*
+    * Holds the frame requests
+    */
+    var frameReq, stop = false;
+
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -52,11 +57,19 @@ var Engine = (function(global) {
          * for the next time this function is called.
          */
         lastTime = now;
-
+        /*
+        * Stop the requestAnimationFrame if
+        * already won
+        */
+        checkWin();
+        if(stop){
+          reset();
+          return;
+        }
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+        frameReq = win.requestAnimationFrame(main);
     }
 
     /* This function does some initial setup that should only occur once,
@@ -65,6 +78,7 @@ var Engine = (function(global) {
      */
     function init() {
         reset();
+        Start();
         lastTime = Date.now();
         main();
     }
@@ -79,10 +93,76 @@ var Engine = (function(global) {
      * on the entities themselves within your app.js file).
      */
     function update(dt) {
-        updateEntities(dt);
-        // checkCollisions();
+      checkCollisions(); //
+      updateEntities(dt);
     }
 
+    /* This is called during the updation of the entities
+     * this checks whether the player is in collision with
+     * the enemy.
+     *
+     *
+     *
+     */
+    function checkCollisions(){
+      var collided = false;
+      var playerPos = player.position();
+      var spritePlayer = Resources.get(player.sprite);
+      var playerImage = {
+        w: spritePlayer.width,
+        h: spritePlayer.height
+      };
+      allEnemies.forEach(function(enemy) {
+        var enemyPos = enemy.position();
+        var enemySprite = Resources.get(enemy.sprite);
+        var enemyImage = {
+          w: enemySprite.width,
+          h: enemySprite.height
+        }
+        var xDiff = enemyPos.x - playerPos.x;
+        var yDiff = enemyPos.y - playerPos.y;
+        xDiff = xDiff < 0 ? xDiff * -1 : xDiff;
+        var w = enemyImage.w - 50;
+        var xCollision = xDiff >= w ? false : true;
+        var yNewDiff = yDiff;
+        var yCollision = yNewDiff  > -29 && yNewDiff < 70 ? true : false;
+
+          // if(enemy.position().isEqual(player.position())){
+          //     collided = true;
+          // }
+          if(!collided){
+            collided = yCollision && xCollision;
+          }
+          win.XDIFF = xDiff;
+          win.YDIFF = yDiff;
+      });
+
+      if(collided){
+        stop = true;
+        setTimeout(function(){
+          stop = false;
+          init();
+        },100);
+      }
+
+    }
+
+    /*
+     *
+     * Checks whether the player has won.
+     *
+     *
+     *
+     */
+     function checkWin(){
+       var pos = player.position();
+       if(pos.y <= 0){
+         stop = true;
+         setTimeout(function(){
+           alert('You have won');
+         },100);
+       }
+     }
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
      * their update() methods. It will then call the update function for your
@@ -160,6 +240,8 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        win.cancelAnimationFrame(frameReq);
+        ClearEnemy();
     }
 
     /* Go ahead and load all of the images we know we're going to need to
