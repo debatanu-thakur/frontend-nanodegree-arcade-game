@@ -18,6 +18,11 @@ var Enemy = function() {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+    // If enemy is set up for delete
+    // Do not perform update operation
+    if (this.delete) {
+      return;
+    }
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -28,7 +33,6 @@ Enemy.prototype.update = function(dt) {
     */
     if (this.x > ctx.canvas.width) {
         this.destroy(); //  Marks the enemy to be deleted
-        RemoveEnemy();  //  Removes the enemy from the allEnemies array
     }
 
 };
@@ -173,6 +177,7 @@ function Start(){
     InitializeEnemy();
     InitializeEnemy();
     clear = setInterval(function(){
+      RemoveEnemy();  //  Removes the enemy from the allEnemies array
       InitializeEnemy();
     },500);
 }
@@ -198,10 +203,6 @@ document.addEventListener('keyup', function(e) {
 
 /*Custom Functions for usage*/
 
-/*To generate random positions for enemy and other similar features*/
-function GenerateRandom(start, limit) {
-    return Math.floor(Math.random() * limit) + start;
-}
 
 /*Initializing new enemy*/
 function InitializeEnemy() {
