@@ -159,7 +159,11 @@ var Engine = (function(global) {
        if(pos.y <= 0){
          stop = true;
          setTimeout(function(){
-           alert('You have won');
+           ctx.font = "30px Arial";
+           ctx.fillStyle = "black";
+           ctx.textAlign = "center";
+          //ctx.fillText("Congratulations, you have won!",10,250);
+          ctx.fillText("Congratulations, you have won!",ctx.canvas.width/2,ctx.canvas.height/2 - 10);
          },100);
        }
      }
