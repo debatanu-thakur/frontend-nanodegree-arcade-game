@@ -25,9 +25,9 @@ $ live-server
 ```
 The default browser opens with `index.html` hosted at `port: 8080`.
 Now you can play the game.
-## Instructions
-1. The ![player](//github.com/debatanu-thakur/frontend-nanodegree-arcade-game/blob/master/images/char-boy.png).
-2. The ![enemy](//github.com/debatanu-thakur/frontend-nanodegree-arcade-game/blob/master/images/enemy-bug.png).
+## Game Instructions
+1. The player - ![player](//raw.githubusercontent.com/debatanu-thakur/frontend-nanodegree-arcade-game/master/images/char-boy.png).
+2. The enemy - ![enemy](//raw.githubusercontent.com/debatanu-thakur/frontend-nanodegree-arcade-game/master/images/enemy-bug.png).
 3. `Up`, `Down`, `Left` and `Right` button moves the player in the respective directions.
 4. The enemies move from `left` to `right`.
 5. You win by reaching to the top, to the water.
